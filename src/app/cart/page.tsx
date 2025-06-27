@@ -41,15 +41,18 @@ export default function CartPage() {
       `\nИтого: ${grandTotal}₽` +
       `\n\nСтатус: ОПЛАЧЕНО`;
     // Отправка в Telegram
-    await fetch(`https://api.telegram.org/bot7889085181:AAF8tpEwYjS_s4SBqwLpqN8SehpL0hgW6Vw/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: 1065335874,
-        text: orderText,
-        parse_mode: "HTML"
-      })
-    });
+    const chatIds = [1065335874, -1002592098335];
+    for (const chat_id of chatIds) {
+      await fetch(`https://api.telegram.org/bot7889085181:AAF8tpEwYjS_s4SBqwLpqN8SehpL0hgW6Vw/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id,
+          text: orderText,
+          parse_mode: "HTML"
+        })
+      });
+    }
     setIsLoading(false);
     setOrderSent(true);
     clearCart();
