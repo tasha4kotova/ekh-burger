@@ -21,8 +21,8 @@ export default function CursorTrailEffect() {
       10,  // красно-оранжевый
       80,  // жёлто-зелёный
     ];
-    function e(t: any) { this.init(t || {}); }
-    function n(t: any) { this.init(t || {}); }
+    // function e(t: any) { this.init(t || {}); }
+    // function n(t: any) { this.init(t || {}); }
     function i(t: any) {
       document.removeEventListener("mousemove", i);
       document.removeEventListener("touchstart", i);
@@ -35,7 +35,7 @@ export default function CursorTrailEffect() {
     }
     function a() {
       w = [];
-      for (let t = 0; t < E.trails; t++) w.push(new n({ spring: .45 + .025 * (t / E.trails), colorIndex: t % colors.length }));
+      // for (let t = 0; t < E.trails; t++) w.push(new n({ spring: .45 + .025 * (t / E.trails), colorIndex: t % colors.length }));
     }
     function o() {
       if (f.running) {
@@ -78,69 +78,69 @@ export default function CursorTrailEffect() {
         x.y = t.touches[0].pageY;
       }
     }
-    e.prototype = {
-      init: function (t: any) {
-        this.phase = t.phase || 0;
-        this.offset = t.offset || 0;
-        this.frequency = t.frequency || .001;
-        this.amplitude = t.amplitude || 1;
-      },
-      update: function () {
-        this.phase += this.frequency;
-        return this.offset + Math.sin(this.phase) * this.amplitude;
-      },
-      value: function () { return this.offset + Math.sin(this.phase) * this.amplitude; }
-    };
-    n.prototype = {
-      init: function (e: any) {
-        this.spring = e.spring + .1 * Math.random() - .05;
-        this.friction = E.friction + .01 * Math.random() - .005;
-        this.colorIndex = e.colorIndex;
-        this.nodes = [];
-        for (let i = 0; i < E.size; i++) {
-          let n = { x: x.x || 0, y: x.y || 0, vx: 0, vy: 0 };
-          this.nodes.push(n);
-        }
-      },
-      update: function () {
-        let t = this.spring, e = this.nodes[0];
-        e.vx += ((x.x || 0) - e.x) * t;
-        e.vy += ((x.y || 0) - e.y) * t;
-        for (let i = 0, a = this.nodes.length; a > i; i++) {
-          e = this.nodes[i];
-          if (i > 0) {
-            let n = this.nodes[i - 1];
-            e.vx += (n.x - e.x) * t;
-            e.vy += (n.y - e.y) * t;
-            e.vx += n.vx * E.dampening;
-            e.vy += n.vy * E.dampening;
-          }
-          e.vx *= this.friction;
-          e.vy *= this.friction;
-          e.x += e.vx;
-          e.y += e.vy;
-          t *= E.tension;
-        }
-      },
-      draw: function () {
-        let t, e, n = this.nodes[0].x, i = this.nodes[0].y;
-        f.beginPath();
-        f.moveTo(n, i);
-        for (let a = 1, o = this.nodes.length - 2; o > a; a++) {
-          t = this.nodes[a];
-          e = this.nodes[a + 1];
-          n = .5 * (t.x + e.x);
-          i = .5 * (t.y + e.y);
-          f.quadraticCurveTo(t.x, t.y, n, i);
-        }
-        const lastIndex = this.nodes.length - 1;
-        t = this.nodes[lastIndex - 1];
-        e = this.nodes[lastIndex];
-        f.quadraticCurveTo(t.x, t.y, e.x, e.y);
-        f.stroke();
-        f.closePath();
-      }
-    };
+    // function e.prototype = {
+    //   init: function (t: any) {
+    //     this.phase = t.phase || 0;
+    //     this.offset = t.offset || 0;
+    //     this.frequency = t.frequency || .001;
+    //     this.amplitude = t.amplitude || 1;
+    //   },
+    //   update: function () {
+    //     this.phase += this.frequency;
+    //     return this.offset + Math.sin(this.phase) * this.amplitude;
+    //   },
+    //   value: function () { return this.offset + Math.sin(this.phase) * this.amplitude; }
+    // };
+    // function n.prototype = {
+    //   init: function (e: any) {
+    //     this.spring = e.spring + .1 * Math.random() - .05;
+    //     this.friction = E.friction + .01 * Math.random() - .005;
+    //     this.colorIndex = e.colorIndex;
+    //     this.nodes = [];
+    //     for (let i = 0; i < E.size; i++) {
+    //       let n = { x: x.x || 0, y: x.y || 0, vx: 0, vy: 0 };
+    //       this.nodes.push(n);
+    //     }
+    //   },
+    //   update: function () {
+    //     let t = this.spring, e = this.nodes[0];
+    //     e.vx += ((x.x || 0) - e.x) * t;
+    //     e.vy += ((x.y || 0) - e.y) * t;
+    //     for (let i = 0, a = this.nodes.length; a > i; i++) {
+    //       e = this.nodes[i];
+    //       if (i > 0) {
+    //         let n = this.nodes[i - 1];
+    //         e.vx += (n.x - e.x) * t;
+    //         e.vy += (n.y - e.y) * t;
+    //         e.vx += n.vx * E.dampening;
+    //         e.vy += n.vy * E.dampening;
+    //       }
+    //       e.vx *= this.friction;
+    //       e.vy *= this.friction;
+    //       e.x += e.vx;
+    //       e.y += e.vy;
+    //       t *= E.tension;
+    //     }
+    //   },
+    //   draw: function () {
+    //     let t, e, n = this.nodes[0].x, i = this.nodes[0].y;
+    //     f.beginPath();
+    //     f.moveTo(n, i);
+    //     for (let a = 1, o = this.nodes.length - 2; o > a; a++) {
+    //       t = this.nodes[a];
+    //       e = this.nodes[a + 1];
+    //       n = .5 * (t.x + e.x);
+    //       i = .5 * (t.y + e.y);
+    //       f.quadraticCurveTo(t.x, t.y, n, i);
+    //     }
+    //     const lastIndex = this.nodes.length - 1;
+    //     t = this.nodes[lastIndex - 1];
+    //     e = this.nodes[lastIndex];
+    //     f.quadraticCurveTo(t.x, t.y, e.x, e.y);
+    //     f.stroke();
+    //     f.closePath();
+    //   }
+    // };
     // --- Инициализация ---
     setTimeout(() => {
       const canvas = document.getElementById("canvas") as HTMLCanvasElement | null;
@@ -148,7 +148,7 @@ export default function CursorTrailEffect() {
       f = canvas.getContext("2d");
       f.running = !0;
       f.frame = 1;
-      l = new e({ phase: 2 * Math.random() * Math.PI, amplitude: 85, frequency: .0015, offset: 285 });
+      // l = new e({ phase: 2 * Math.random() * Math.PI, amplitude: 85, frequency: .0015, offset: 285 });
       x.x = window.innerWidth / 2;
       x.y = window.innerHeight / 2;
       document.addEventListener("mousemove", i);
