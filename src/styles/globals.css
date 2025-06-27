@@ -1,0 +1,19 @@
+.button-main {
+  background: #000;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.button-main:hover, .button-main:focus {
+  background: #fff;
+  color: #000;
+  border-color: #000;
+  text-decoration: none;
+}
+.button-main:active {
+  opacity: 0.85;
+} 
